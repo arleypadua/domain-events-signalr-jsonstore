@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ordering.Api.RealTime;
+using Ordering.Infrastructure;
 using Ordering.Service.Handlers;
+using Ordering.Service.Repositories;
 
 namespace Ordering.Api
 {
@@ -35,6 +37,8 @@ namespace Ordering.Api
 
             services.AddMediatR(Assembly.GetExecutingAssembly(),
                 typeof(PlaceOrderRequestHandler).Assembly);
+
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddSignalR();
         }

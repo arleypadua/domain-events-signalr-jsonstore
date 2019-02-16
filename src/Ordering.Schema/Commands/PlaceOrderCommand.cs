@@ -1,9 +1,11 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 
 namespace Ordering.Schema.Commands
 {
     public class PlaceOrderCommand : IRequest
     {
+        public string OrderId { get; set; }
         public string CustomerName { get; set; }
         public OrderLine[] OrderLines { get; set; }
 
