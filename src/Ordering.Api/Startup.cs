@@ -45,16 +45,8 @@ namespace Ordering.Api
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<OrderCollection>();
 
-            //services.AddSqlServerJsonStore(Configuration.GetConnectionString("OrderingDb"));
-
-            services.AddScoped<IStoreDocuments, SqlServerDocumentStore>(provider =>
-            {
-                var connection = new SqlConnection(Configuration.GetConnectionString("OrderingDb"));
-                connection.Open();
-
-                return new SqlServerDocumentStore(connection);
-            });
-
+            services.AddSqlServerJsonStore(Configuration.GetConnectionString("OrderingDb"));
+            
             services.AddSignalR();
         }
 

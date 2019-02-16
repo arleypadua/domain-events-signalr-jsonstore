@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MediatR;
 using Ordering.Schema.Events;
@@ -38,8 +39,8 @@ namespace Ordering.Service.Model
         public string Id { get; private set; }
         public string CustomerName { get; private set; }
 
-        private List<Line> _orderLines;
-        public IReadOnlyList<Line> OrderLines
+        private List<Line> _orderLines = new List<Line>();
+        public ReadOnlyCollection<Line> OrderLines
         {
             get => _orderLines.AsReadOnly();
             private set => _orderLines = value.ToList();

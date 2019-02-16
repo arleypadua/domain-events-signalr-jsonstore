@@ -2,10 +2,17 @@
 {
     public class Line
     {
-        public Line(string productName, int quantity)
+        private Line()
         {
-            ProductName = productName;
-            Quantity = quantity;
+        }
+
+        public static Line New(string productName, int quantity)
+        {
+            return new Line
+            {
+                ProductName = productName,
+                Quantity = quantity
+            };
         }
 
         public string ProductName { get; private set; }

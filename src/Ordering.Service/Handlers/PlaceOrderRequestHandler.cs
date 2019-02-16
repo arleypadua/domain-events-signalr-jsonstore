@@ -27,7 +27,7 @@ namespace Ordering.Service.Handlers
             // todo make idempotent
 
             var order = Order.Place(request.CustomerName, request.OrderLines
-                .Select(l => new Line(l.ProductName, l.Quantity))
+                .Select(l => Line.New(l.ProductName, l.Quantity))
                 .ToArray());
 
             await _repository.Add(order);

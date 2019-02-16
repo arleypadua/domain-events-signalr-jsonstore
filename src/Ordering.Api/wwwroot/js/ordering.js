@@ -22,6 +22,10 @@ connection.on("orderPlaced", orderResult => {
     addEventToList(`Order with id ${orderResult.orderId} placed.`);
 });
 
+connection.on("orderEventsInitialized", orderResult => {
+    addEventToList(`Order with id ${orderResult.id} restored from the database.`);
+});
+
 // Starting the connection with the server
 connection.start().catch(err => console.error(err.toString()));
 
