@@ -5,6 +5,6 @@ namespace Ordering.Schema.Events
 {
     public class OrderPlacedEvent : INotification
     {
-        public Guid OrderId { get; set; }
+        public string OrderId { get; set; }
     }
 }

@@ -1,4 +1,8 @@
+using System.Data.SqlClient;
 using System.Reflection;
+using JsonStore.Abstractions;
+using JsonStore.Sql;
+using JsonStore.Sql.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +43,17 @@ namespace Ordering.Api
                 typeof(PlaceOrderRequestHandler).Assembly);
 
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<OrderCollection>();
+
+            //services.AddSqlServerJsonStore(Configuration.GetConnectionString("OrderingDb"));
+
+            services.AddScoped<IStoreDocuments, SqlServerDocumentStore>(provider =>
+            {
+                var connection = new SqlConnection(Configuration.GetConnectionString("OrderingDb"));
+                connection.Open();
+
+                return new SqlServerDocumentStore(connection);
+            });
 
             services.AddSignalR();
         }

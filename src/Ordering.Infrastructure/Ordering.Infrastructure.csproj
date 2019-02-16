@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JsonStore.Sql" Version="0.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ordering.Service\Ordering.Service.csproj" />
   </ItemGroup>
 
